@@ -1,6 +1,6 @@
-## 1. Type
+# 1. Type
 
-### 타입 추론
+## 타입 추론
 
 - Swift에서 변수와 상수에는 타입을 명시할 수도 있고 생각할 수도 있다.
 - 타입을 생략하는 경우 컴파일러가 타입 추론 과정을 거쳐 타입을 지정한다.
@@ -8,7 +8,7 @@
 
 ---
 
-### Class와 Struct
+## Class와 Struct
 
 - `class`는 reference 타입이고, `struct`는 value type이다.
 - Swift에서 reference 타입은 ARC를 통해 메모리를 관리한다.
@@ -21,9 +21,9 @@
 
 ---
 
-### Actor
+## Actor
 
-- **Actor** Swift 5.5부터 등장한 새로운 타입이며 동시성 환경에서 데이터 경합을 방지하기 위해 등장 하였다.
+- **Actor** Swift 5.5부터 등장한 새로운 타입이며 동시성 환경에서 데이터 경합을 방지하기 위해 등장하였다.
 - `actor` 타입 또한 타입의 한 종류이므로 프로퍼티, 메서드, 이니셜라이저, 서브스크립트 등을 모두 사용할 수 있다.
 - 또한 `protocol`을 채택하여 요구사항을 충족하거나, `extension`을 통해 동일하게 기능 확장이 가능하다.
 - `actor`는 `class`와 같이 참조 타입이지만, `struct`와 같이 상속은 불가능하다.
@@ -66,7 +66,7 @@ Task {
 
 ---
 
-### Swift의 값 복사
+## Swift의 값 복사
 
 - Swift는 **COW** 방식을 통해 값을 복사한다.
 - **COW**는 원본과 복사본 중 수정되기 전까지 복사하지 않고 원본 리소스를 공유하다가, 둘 중 하나에서 수정이 일어나는 경우 값을 복사한다.
@@ -76,7 +76,7 @@ Task {
 
 ---
 
-### Static Dispatch vs Dynamic Dispatch
+## Static Dispatch vs Dynamic Dispatch
 
 📌 **Dynamic Dispatch**
 
@@ -99,7 +99,7 @@ Task {
 
 ---
 
-### Type Casting
+## Type Casting
 
 - Swift의 타입 캐스팅은 타입을 바꾸는 것이 아닌, 사용 범위를 전환하여 다른 타입처럼 사용할 수 있도록 한다.
 - **업캐스팅**은 하위 클래스가 상위 클래스로 전환하는 것, **다운캐스팅**은 상위 클래스가 하위 클래스 타입으로 전환하는 것
@@ -121,7 +121,7 @@ if let person = student as? Person {
 
 ---
 
-## 2. 접근 제어자
+# 2. 접근 제어자
 
 Swift는 `open`, `public`, `internal`, `fileprivate`, `private` 다섯 가지의 접근 제어자를 제공한다.
 
@@ -133,20 +133,20 @@ Swift는 `open`, `public`, `internal`, `fileprivate`, `private` 다섯 가지의
 
 ---
 
-## 3. Initializer
+# 3. Initializer
 
-### Convenience Initializer
+## Convenience Initializer
 
 - `init` 앞에 `convenience` 키워드를 사용하여 편의 이니셜라이저를 나타낸다.
 - **편의 이니셜라이저**는 **지정 이니셜라이저**를 도와 클래스 초기화를 쉽게할 수 있도록 도와주는 역할을 한다.
 - **편의 이니셜라이저**는 또 다른 **편의 이니셜라이저**를 호출할 수 있지만, 초기화 과정 중 반드시 마지막에는 **지정 이니셜라이저**를 호출해야 한다.
 - 이니셜라이저가 다른 이니셜라이저를 호출하는 행위를 초기화를 **위임**한다라고 한다.
 
-### Designated Initializer
+## Designated Initializer
 
 - 상속 관계에서 **지정 이니셜라이저**는 반드시 상위 클래스의 **지정 이니셜라이저**를 호출해야 한다.
 
-### Required Initializer
+## Required Initializer
 
 - **요구 이니셜라이저**는 상속받은 모든 하위 클래스에서 필수적으로 **재정의** 해야하는 이니셜라이저이다.
 - 이니셜라이저를 **재정의** 하는 역할이지만, `override` 키워드를 사용하지 않는다.
@@ -155,14 +155,14 @@ Swift는 `open`, `public`, `internal`, `fileprivate`, `private` 다섯 가지의
 
 ---
 
-### Safety-Check
+## Safety-Check
 
 - 클래스 초기화 중 안전 확인 조건을 만족해야 하는 이유는 의도하지 않는 값으로 프로퍼티가 초기화 되는 것을 방지하기 위함이다.
 - 자식 클래스의 **지정 이니셜라이저**는 부모 클래스의 **지정 이니셜라이저**로 초기화를 위임하기 전 자식 클래스만이 가지는 프로퍼티가 모두 초기화 되었는지 확인 후 초기화를 위임해야 한다.
 - 자식 클래스의 **지정 이니셜라이저**에서 부모 클래스의 **지정 이니셜라이저**로 반드시 초기화를 위임 후 상속 받은 프로퍼티를 사용자 정의로 초기화할 수 있다.
 - 1단계 초기화를 마치기 전까지 이니셜라이저에서 인스턴스 **메서드**, 인스터스 **프로퍼티**를 호출할 수 없으며, `self` 키워드 또한 사용할 수 없다.
 
-### Class의 초기화 2단계
+## Class의 초기화 2단계
 
 **1단계 초기화**
 
@@ -178,25 +178,25 @@ Swift는 `open`, `public`, `internal`, `fileprivate`, `private` 다섯 가지의
 
 ---
 
-### Deinit
+## Deinit
 
 - 클래스의 인스턴스가 메모리에서 해제될 때 필요한 작업을 수행해야할 때 deinitializer를 사용
 - `deinit` 키워드를 통해 구현하면, 인스턴스가 메모리에서 해제될 때 자동으로 호출
 
 ---
 
-## 4. 데이터 타입
+# 4. 데이터 타입
 
-### Optional Type
+## Optional Type
 
 - 옵셔널 타입은 값이 있을 수도, 없을 수도 있음을 나타내는 타입이다.
 
-### Optional Type 사용 이유
+## Optional Type 사용 이유
 
 - 변수 또는 상수에 `nil`을 할당하여 값이 없음을 의미할 수 있다.
 - 함수의 parameter에서 값을 전달하지 않아도 되는 경우 옵셔널 타입을 사용할 수 있다.
 
-### Optional의 정의
+## Optional의 정의
 
 - 아래는 [Swift 깃허브 리포지토리](https://github.com/swiftlang/swift/blob/main/stdlib/public/core/Optional.swift)에 정의 되어 있는 옵셔널 타입이다. (Swift 5.9+)
 
@@ -214,7 +214,7 @@ public enum Optional<Wrapped: ~Copyable>: ~Copyable {
 - `nil`을 할당하는 경우 `.none`값이, 값이 있는 경우 `.some`이 된다.
 - 옵셔널 타입은 `@frozen`으로 정의되어 있기 때문에 새로운 case가 추가되지 않는 것을 보장한다.
 
-### Optional Chaining
+## Optional Chaining
 
 - Swift는 런타임 안전성을 확보하기 위해 옵셔널 타입의 경우 값이 있는지 없는지 항상 체크해야 한다.
 - **옵셔널 체이닝**(`?` 키워드)을 사용하면, 옵셔널 타입의 값이 존재하는 경우에만 메서드를 호출하거나 프로퍼티에 접근할 수 있다.
@@ -225,7 +225,7 @@ if imagePaths["star"]?.hasSuffix(".png") == true {
 }
 ```
 
-### Optional Binding
+## Optional Binding
 
 - 옵셔널 타입의 값을 안전하게 사용하기 위해서는 **옵셔널 바인딩**을 사용할 수 있다.
 
@@ -242,14 +242,14 @@ if let value = optionalValue {
 *예외적으로 `==`, `!=`  **비교 연산자**는 옵셔널 타입 간 연산이 가능하다.
 > 
 
-### Implicitly Unwrapped Optional
+## Implicitly Unwrapped Optional
 
 - 옵셔널 바인딩을 하지 않고 **암시적 언래핑**을 통해 옵셔널 내부의 값을 가져올 수 있다.
 - 하지만 옵셔널 내부에 값이 존재하지 않고, 예외 처리를 하지 않으면 런타임 에러가 발생한다.
 
 ---
 
-### enum Type
+## enum Type
 
 - **열거형**은 연관된 항목을 묶어서 표현할 수 있는 데이터 타입이다.
 - **열거형** 타입에는 **RawValue(원시값)**을 지정할 수 있다.
@@ -279,3 +279,29 @@ enum ServerError: Error {
 
 let serverError: ServerError = .internalServerError(message: "서버 에러 메시지")
 ```
+---
+## Array
+- 배열은 같은 자료형의 데이터를 나열하여 저장하는 형태의 컬렉션 타입이다.
+- Swift의 배열은 `struct` 타입으로 선언되어 있다. (value 타입)
+
+### Preallocation
+- 배열에 element를 자주 append하는 경우 메모리를 지속적으로 할당 해야하기 때문에 미리 일정 크기만큼의 메모리를 미리 할당하는 방식을 말한다.
+- 미리 할당된 크기를 모두 사용하는 경우 더 큰 메모리 영역을 할당하고 이전 저장소에서 새로운 저장소로 복사한다. (재할당)
+- 이때, 늘어나는 배열의 capacity는 이전 스토리지의 배수, 즉 지수 형태로 늘어난다.
+- 따라서 element를 추가하는 빈도가 많아질 수록 발생 빈도는 줄어든다.
+- `Array` 타입의 `capacity` 프로퍼티를 통해 크기를 확인할 수 있다.
+```swift
+var arr: [Int] = Array(repeating: 0, count: 3)
+print(arr.count)    //3
+print(arr.capacity)    //4
+
+arr.append(0)
+print(arr.count)    //4
+print(arr.capacity)    //4
+
+arr.append(0)
+print(arr.count)    //5
+print(arr.capacity)    //8
+
+```
+- 만약 재할당을 방지하고자 한다면, `reserveCapacity(_:)` 메서드를 통해 capacity를 고정할 수 있다.
